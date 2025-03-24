@@ -7,23 +7,19 @@ public class Main {
 
     public static void main(String[] args) {
         //bloco try para detectar erros
-        try(InputStream file = new FileInputStream("data.xlsx")){
+        try{
+            InputStream file = new FileInputStream("src/data.xlsx");
             //instanciar o workbook usando o elemento obtido do FileInputStream. Isso implica que o programa simplesmente traduz com base na dedução do que o objeto da classe FileInputStream possui? Se sim. Wow.
 
            // XSSFWorkbook workbook = new XSSFWorkbook(file);
 
             //Vou tentar implementar por meio do WorkbookFactory. Já que, segundo a documentação, ele já cuida de tratar o tipo do arquivo.
+            //código quebra quando chega nessa parte. "NoClassDefFOundError" "ClassNotFoundException".
             Workbook workbook = WorkbookFactory.create(file);
 
             //Agora sim vamos para as tabelinhas.
 
             Sheet sheet = workbook.getSheetAt(0);
-
-            //iterar em cada tabela. Um por um
-
-            //vamos implementar um loop while para simplificar.
-
-            //Enquanto houver dados ou conteúdo na coluna. Continue :)
             //Melhor ainda. Para cada dado que existir no limite da coleção.
             for (Row row : sheet) {
 
@@ -32,7 +28,6 @@ public class Main {
                 Iterator<Cell> cellIterator = row.cellIterator();
 
                 //enquanto houver dados ou conteúdo na linha. Continue :)
-
 
                 while (cellIterator.hasNext()) {
 
