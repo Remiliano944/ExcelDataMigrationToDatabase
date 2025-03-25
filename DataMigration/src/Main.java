@@ -15,6 +15,7 @@ public class Main {
 
             //Vou tentar implementar por meio do WorkbookFactory. Já que, segundo a documentação, ele já cuida de tratar o tipo do arquivo.
             //código quebra quando chega nessa parte. "NoClassDefFOundError" "ClassNotFoundException".
+            //aparentemente é falta de dependências. Oh... Agora sim o uso do maven faz sentido!! Agora eu entendi!!
             Workbook workbook = WorkbookFactory.create(file);
 
             //Agora sim vamos para as tabelinhas.
@@ -40,10 +41,10 @@ public class Main {
                     switch (cell.getCellType()) {
                         //Caso sejam letras/alfabético
                         case STRING:
-                            System.out.print(cell.getStringCellValue() + "t");
+                            System.out.print(cell.getStringCellValue() + ", ");
                             break;
                         case NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "t");
+                            System.out.print((int)cell.getNumericCellValue() + ", ");
                             break;
                         default:
                             System.out.println("Erro");
