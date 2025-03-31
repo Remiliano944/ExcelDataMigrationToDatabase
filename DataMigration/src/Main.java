@@ -47,8 +47,8 @@ public class Main {
                             System.out.print((int)cell.getNumericCellValue() + ", ");
                             break;
                         default:
-                            System.out.println("Erro");
-                            throw new Exception("Algum valor fora de cogitação foi detectado");
+                            //para fazer forma de ler formulas de excel.
+                           CellValue evaluate();
                     }
                 }
                 System.out.println(" ");
