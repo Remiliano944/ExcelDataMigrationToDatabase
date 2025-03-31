@@ -48,7 +48,6 @@ public class Main {
                             break;
                         default:
                             //para fazer forma de ler formulas de excel.
-                           CellValue evaluate();
                     }
                 }
                 System.out.println(" ");
