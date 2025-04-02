@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         //bloco try para detectar erros
         try{
-            InputStream file = new FileInputStream("src/data.xlsx");
+            InputStream file = new FileInputStream("src/main/java/data.xlsx");
             //instanciar o workbook usando o elemento obtido do FileInputStream. Isso implica que o programa simplesmente traduz com base na dedução do que o objeto da classe FileInputStream possui? Se sim. Wow.
 
            // XSSFWorkbook workbook = new XSSFWorkbook(file);
