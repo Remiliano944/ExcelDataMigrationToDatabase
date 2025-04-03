@@ -41,26 +41,18 @@ public class Main {
                     Cell cell = cellIterator.next();
                     //como o programa pode obter vários tipos de informações (sendo estas numéricas ou alfabéticas)...
 
+                    //Aplicação do Evaluator aqui. Considerando que a classe já lida com qualquer tipo de valor...
+                    //Sua implementação mais cedo há de beneficiar melhor o meu projeto, pois assim poderei usar o default case.
 
-                    switch (cell.getCellType()) {
-                        //Caso sejam letras/alfabético
+                    CellValue cellValue = evaluator.evaluate(cell);
+
+                    switch (cellValue.getCellType()) {
                         case STRING:
                             System.out.print(cell.getStringCellValue() + ", ");
                             break;
-                        case NUMERIC:
-                            System.out.print((int)cell.getNumericCellValue() + ", ");
-                            break;
-                        default:
-                            //para fazer forma de ler formulas de excel.
-                            //O exemplo na documentação do POI sugere usar o evaluator antes do switch case, para fins de poder já tratar do objeto.
-                            //Oque faz sentido mediante o fato de que o evaluator não faz alterações ou ações em caso de dados que não sejam formulas...
-                            //Mas ei, oque aconteceria se eu usasse o Evaluator aqui huh?
-                            //Aparentemente nada demais, o evaluator opera tranquilamente, e não só isso como também eu entendi que o evaluator RETORNA um CellValue.
-                            //Que basicamente opera como um Cell normal :)
-                            //Agora só preciso reduzir a quantidade de digitos no número da formula para no máximo 7 digitos
 
-                            //Obter valor da celula e convertê-lo para inteiro
-                            int valor = (int)evaluator.evaluate(cell).getNumberValue();
+                        case NUMERIC:
+                            int valor = (int)cellValue.getNumberValue();
                             //captar a largura de digitos do valor
                             int length = String.valueOf(valor).length();
 
@@ -71,6 +63,10 @@ public class Main {
                                 length--;
                             }
                             System.out.println(valor + ", ");
+                            break;
+
+                        case ERROR:
+                            System.out.println("Erro, valor nulo ou fora de cogitação.");
                             break;
                     }
                 }
